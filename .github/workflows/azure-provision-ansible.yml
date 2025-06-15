@@ -9,11 +9,8 @@
 name: Provision Azure PaaS and Configure with Ansible
 
 on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
-
+  workflow_dispatch: # Allows manual triggering in GitHub UI
+  
 jobs:
   azure_Provisioning:
     runs-on: ubuntu-latest
