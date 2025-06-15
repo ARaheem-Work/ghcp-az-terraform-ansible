@@ -98,10 +98,13 @@ jobs:
       - name: Decode Terraform Outputs
         run: |
           echo "${{ needs.azure_Provisioning.outputs.TF_OUTPUTS1 }}" | base64 -d > tf_outputs.json
+          cat tf_outputs.json
           export RESOURCE_GROUP_NAME=$(jq -r .resource_group_name.value tf_outputs.json)
           echo "RESOURCE_GROUP_NAME=$RESOURCE_GROUP_NAME" >> $GITHUB_ENV
+          echo "RESOURCE_GROUP_NAME=$RESOURCE_GROUP_NAME"
           export APP_SERVICE_NAME=$(jq -r .app_service_name.value tf_outputs.json)
           echo "APP_SERVICE_NAME=$APP_SERVICE_NAME" >> $GITHUB_ENV
+          echo "APP_SERVICE_NAME=$APP_SERVICE_NAME"
 
       - name: Run Ansible Playbook
         env:
