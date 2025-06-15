@@ -7,10 +7,7 @@
     app_service_name: "{{ app_service_name | default(omit) }}"
   tasks:
     
-    - name: Output App Service configuration result
-      debug:
-        var: app_service_config
-
+    
     - name: Set App Settings (key-value pairs)
       azure.azcollection.azure_rm_webapp:
         resource_group: "{{ resource_group_name }}"
