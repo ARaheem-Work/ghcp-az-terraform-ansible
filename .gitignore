@@ -105,5 +105,5 @@ logs/
 
 
 # custom
-*env_vars.sh
+env_vars.sh
 tf_env_vars.sh
