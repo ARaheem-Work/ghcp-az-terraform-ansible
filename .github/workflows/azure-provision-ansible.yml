@@ -76,7 +76,7 @@ jobs:
         run: |
           terraform output -json > tf_outputs.json
           echo "TF_OUTPUTS=$(cat tf_outputs.json | base64 -w0)" >> $GITHUB_OUTPUT
-      -name: Display Tools versions
+      - name: Display Tools versions
         run: |
           echo "Terraform version: $(terraform version)"
           echo "Azure CLI version: $(az --version)"
