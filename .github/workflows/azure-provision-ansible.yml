@@ -93,10 +93,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install ansible[azure] azure-cli
 
-      - name: Prepare Ansible Environment Variables
-        run: |
-          source ./ansible/env_vars.sh
-
       - name: Decode Terraform Outputs
         run: |
           echo "${{ needs.azure_Provisioning.outputs.TF_OUTPUTS }}" | base64 -d > tf_outputs.json
