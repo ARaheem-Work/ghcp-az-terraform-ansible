@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 4.0"  # Ensure latest provider version
+      version = "~> 4.0" # Ensure latest provider version
     }
   }
   backend "azurerm" {
@@ -28,7 +28,7 @@ resource "azurerm_service_plan" "appserviceplan" {
   location            = azurerm_resource_group.app_rg.location
   resource_group_name = azurerm_resource_group.app_rg.name
   os_type             = "Linux"
-  sku_name            = "F1"  # Free shared tier
+  sku_name            = "F1" # Free shared tier
 }
 
 
@@ -39,6 +39,6 @@ resource "azurerm_linux_web_app" "webapp" {
   service_plan_id     = azurerm_service_plan.appserviceplan.id
 
   site_config {
-   always_on = false
+    always_on = false
   }
 }

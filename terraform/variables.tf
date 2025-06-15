@@ -21,9 +21,3 @@ variable "app_service_name" {
   type        = string
   default     = "tf-basic-app"
 }
-
-variable "subscription_id" {
-  description = "The Azure Subscription ID."
-  type        = string
-  default = "fc173b43-c76c-4e81-95b1-15cfc37abdda"  # Replace with your actual subscription ID
-}
