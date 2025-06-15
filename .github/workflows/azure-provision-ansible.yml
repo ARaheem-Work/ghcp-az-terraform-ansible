@@ -6,7 +6,7 @@
 # - Terraform code is in the terraform/ directory
 # - env_vars.sh and tf_env_vars.sh set required environment variables
 
-name: Provision Azure PaaS and Configure with Ansible
+name: Provision Azure PaaS using Terraform and Configure with Ansible
 
 on:
   workflow_dispatch: # Allows manual triggering in GitHub UI
@@ -20,6 +20,13 @@ jobs:
       ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
     steps:
+      - name: Output Azure Credentials
+        run: |
+          echo "ARM_CLIENT_ID=${{ secrets.AZURE_CLIENT_ID }}"
+          echo "ARM_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+          echo "ARM_TENANT_ID=${{ secrets.AZURE_TENANT_ID }}"
+          echo "ARM_CLIENT_SECRET=${{ secrets.AZURE_CLIENT_SECRET }}"
+          echo "Azure credentials are set."
       - name: Checkout repository
         uses: actions/checkout@v4
 
