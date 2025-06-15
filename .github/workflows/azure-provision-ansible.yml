@@ -76,6 +76,13 @@ jobs:
         run: |
           terraform output -json > tf_outputs.json
           echo "TF_OUTPUTS=$(cat tf_outputs.json | base64 -w0)" >> $GITHUB_OUTPUT
+      -name: Display Tools versions
+        run: |
+          echo "Terraform version: $(terraform version)"
+          echo "Azure CLI version: $(az --version)"
+          echo "GitHub Actions runner version: $(runner --version)"
+          echo "GitHub Actions runner OS: $(uname -a)"
+          echo "GitHub Actions runner architecture: $(uname -m)"
 
   ansible_configuration:
     runs-on: ubuntu-latest
@@ -113,6 +120,9 @@ jobs:
           echo "pip3 version: $(pip3 --version)"
           echo "Ansible version: $(ansible --version)"
           echo "Azure CLI version: $(az --version)"
+          echo "GitHub Actions runner version: $(runner --version)"
+          echo "GitHub Actions runner OS: $(uname -a)"
+          echo "GitHub Actions runner architecture: $(uname -m)"
 
 
       - name: Decode Terraform Outputs
