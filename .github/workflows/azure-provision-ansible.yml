@@ -73,7 +73,7 @@ jobs:
         working-directory: ./terraform
         run: |
           terraform output -json > tf_outputs.json
-          echo "TF_OUTPUTS=$(cat tf_outputs.json | base64 -w0)" >> $GITHUB_ENV
+          echo "TF_OUTPUTS=$(cat tf_outputs.json | base64 -w0)" >> $GITHUB_OUTPUT
 
   ansible_configuration:
     runs-on: ubuntu-latest
