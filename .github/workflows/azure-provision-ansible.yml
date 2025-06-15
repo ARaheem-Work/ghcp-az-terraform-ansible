@@ -32,6 +32,8 @@ on:
 jobs:
   azure_Provisioning:
     runs-on: ubuntu-latest
+    outputs:
+      TF_OUTPUTS1: ${{ steps.tf_outputs.outputs.TF_OUTPUTS }}
     env:
       ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.AZURE_SECRET }}
@@ -95,7 +97,7 @@ jobs:
 
       - name: Decode Terraform Outputs
         run: |
-          echo "${{ needs.azure_Provisioning.outputs.TF_OUTPUTS }}" | base64 -d > tf_outputs.json
+          echo "${{ needs.azure_Provisioning.outputs.TF_OUTPUTS1 }}" | base64 -d > tf_outputs.json
           export RESOURCE_GROUP_NAME=$(jq -r .resource_group_name.value tf_outputs.json)
           echo "RESOURCE_GROUP_NAME=$RESOURCE_GROUP_NAME" >> $GITHUB_ENV
           export APP_SERVICE_NAME=$(jq -r .app_service_name.value tf_outputs.json)
@@ -108,4 +110,4 @@ jobs:
           AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           AZURE_TENANT: ${{ secrets.AZURE_TENANT_ID }}
         run: |
-          ansible-playbook -i localhost, ./ansible/create_rg.yml --extra-vars "resource_group_name=$RESOURCE_GROUP_NAME app_service_name=$APP_SERVICE_NAME"
+          ansible-playbook -i localhost, ./ansible/configure_app_service.yml --extra-vars "resource_group_name=$RESOURCE_GROUP_NAME app_service_name=$APP_SERVICE_NAME"
