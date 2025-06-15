@@ -123,6 +123,7 @@ jobs:
           echo "GitHub Actions runner version: $(runner --version)"
           echo "GitHub Actions runner OS: $(uname -a)"
           echo "GitHub Actions runner architecture: $(uname -m)"
+          pip list | grep azure
 
 
       - name: Decode Terraform Outputs
