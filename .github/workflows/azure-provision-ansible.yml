@@ -101,9 +101,18 @@ jobs:
       - name: Install Ansible Collections
         run: |
           ansible-galaxy collection install azure.azcollection
-          
+
       - name: Verify Ansible Azure Modules
         run: ansible-galaxy collection list azure.azcollection
+
+      - name: Display Tools versions
+        run: |
+          echo "Python version: $(python --version)"
+          echo "Python3 version: $(python3 --version)"
+          echo "pip version: $(pip --version)"
+          echo "pip3 version: $(pip3 --version)"
+          echo "Ansible version: $(ansible --version)"
+          echo "Azure CLI version: $(az --version)"
 
 
       - name: Decode Terraform Outputs
