@@ -98,23 +98,28 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install ansible
-          pip install ansible[azure]
-
+          
       - name: Verify Ansible Installation
         run: |
           ansible --version
-          echo "---"
-          ansible-galaxy collection list azure.azcollection
-
-
+          
 
       - name: Install Ansible Azure Collections
         run: |
-          ansible-galaxy collection install azure.azcollection
+          ansible-galaxy collection install azure.azcollection:3.3.1
 
       - name: Verify Ansible Azure Modules
         run: |
           ansible-galaxy collection list azure.azcollection
+
+      - name: Install Ansible Azure Deppendencies
+        run: |
+          pip3 install -r ~/.ansible/collections/ansible_collections/azure/azcollection/requirements.txt
+
+      - name: Verify Ansible Azure Dependencies
+        run: |
+          pip3 list | grep azure
+
 
       - name: Display Tools versions
         run: |
