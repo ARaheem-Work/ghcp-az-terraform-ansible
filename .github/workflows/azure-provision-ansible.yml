@@ -102,6 +102,7 @@ jobs:
       - name: Verify Ansible Installation
         run: |
           ansible --version
+          ls -lR ~/.ansible 
           
 
       - name: Install Ansible Azure Collections
