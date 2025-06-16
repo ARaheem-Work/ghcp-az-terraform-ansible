@@ -124,11 +124,9 @@ jobs:
           echo "pip3 version: $(pip3 --version)"
           echo "Ansible version: $(ansible --version)"
           echo "Azure CLI version: $(az --version)"
-          echo "GitHub Actions runner version: $(runner --version)"
           echo "GitHub Actions runner OS: $(uname -a)"
           echo "GitHub Actions runner architecture: $(uname -m)"
-          pip list | grep azure
-
+          
 
       - name: Decode Terraform Outputs
         run: |
