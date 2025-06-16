@@ -21,26 +21,6 @@
       debug:
         var: app_settings_result
 
-    - name: Configure Logging and Monitoring
-      azure.azcollection.azure_rm_webapp:
-        resource_group: "{{ resource_group_name }}"
-        name: "{{ app_service_name }}"
-        logs:
-          application_logs:
-            file_system_level: 'Information'
-          http_logs:
-            file_system:
-              retention_in_mb: 35
-              retention_in_days: 7
-              enabled: true
-          detailed_error_messages: true
-          failed_request_tracing: true
-      register: logging_monitoring_result
-
-    - name: Output Logging and Monitoring result
-      debug:
-        var: logging_monitoring_result
-
     - name: Add Common Tags
       azure.azcollection.azure_rm_webapp:
         resource_group: "{{ resource_group_name }}"
