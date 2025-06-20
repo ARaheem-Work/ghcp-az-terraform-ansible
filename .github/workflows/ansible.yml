@@ -6,6 +6,10 @@ on:
 jobs:
   setup-ansible:
     runs-on: ubuntu-latest
+    env:
+      RESOURCE_GROUP_NAME: 'tf-app-rg'  # Replace with your resource group name
+      APP_SERVICE_NAME: 'tf-basic-app'  # Replace with your App Service name
+      
 
     steps:
       - name: Checkout code
@@ -20,22 +24,25 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install ansible
-          ansible-galaxy collection install azure.azcollection
+          ansible-galaxy collection list azure.azcollection
+          ansible-galaxy collection install azure.azcollection:3.3.1
           ansible-galaxy collection list azure.azcollection
       
       - name: Install Ansible Azure Dependencies
         working-directory: ./ansible
         run: |
-          reqs_path=$(ansible-galaxy collection list azure.azcollection | head -n 2 | sed  's/^# //')
-          pip install -r $reqs_path/azure/azcollection/requirements.txt
+          pip3 install -r ~/.ansible/collections/ansible_collections/azure/azcollection/requirements.txt
           pip list | grep azure
       - name: Display Tools versions
         run: |
           echo "Python version: $(python --version)"
+          echo "Python3 version: $(python3 --version)"
           echo "pip version: $(pip --version)"
+          echo "pip3 version: $(pip3 --version)"
           echo "Ansible version: $(ansible --version)"
           echo "Azure CLI version: $(az --version)"
           echo "GitHub Actions runner OS: $(uname -a)"
+          echo "GitHub Actions runner architecture: $(uname -m)"
           
       - name: Verify Installation
         run: |
