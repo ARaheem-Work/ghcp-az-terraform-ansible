@@ -1,0 +1,17 @@
+{
+  "app_service_default_hostname": {
+    "sensitive": false,
+    "type": "string",
+    "value": "tf-basic-app.azurewebsites.net"
+  },
+  "app_service_name": {
+    "sensitive": false,
+    "type": "string",
+    "value": "tf-basic-app"
+  },
+  "resource_group_name": {
+    "sensitive": false,
+    "type": "string",
+    "value": "tf-app-rg"
+  }
+}
